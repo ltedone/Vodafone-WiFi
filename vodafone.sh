@@ -11,6 +11,8 @@ LOGNAME=""
 OPENWRT=""
 #set this to no if you don't want wget to check certificates (if you use this on a system that relies on connectivity to get the date and time and you run this on boot the ssl check will fail resulting in connection errors)
 SSL=""
+COUNTRY=VF_IT
+
 
 if [ "$DIR" = "" ];then
 
@@ -58,7 +60,7 @@ if [ "$REFRESH" = "notyet" ];then
 	
 	if test -f $DIR'/cookies.txt';then
 
-		 wget $WGETSSL --save-cookies $DIR'/cookies.txt' --keep-session-cookies --load-cookies=$DIR'/cookies.txt' --server-response --append-output=$DIR'/vodafone2.txt' -qO/dev/null --post-data 'userFake='$USERNAME'&UserName=VF_IT%2F'$USERNAME'&Password='$PASSWORD'&_rememberMe=on' 'https://it.portal.vodafone-wifi.com/jcp/it?res=login&'$NASID'&'$UAMIP'&'$UAMPORT'&'$MAC'&'$CHALLENGE'&'$IP
+		 wget $WGETSSL --save-cookies $DIR'/cookies.txt' --keep-session-cookies --load-cookies=$DIR'/cookies.txt' --server-response --append-output=$DIR'/vodafone2.txt' -qO/dev/null --post-data 'chooseCountry='$COUNTRY'%2F&userFake='$USERNAME'$&UserName='$COUNTRY'%2F'$USERNAME'&Password='$PASSWORD'&_rememberMe=on' 'https://it.portal.vodafone-wifi.com/jcp/it?res=login&'$NASID'&'$UAMIP'&'$UAMPORT'&'$MAC'&'$CHALLENGE'&'$IP
 	
 	else
 
